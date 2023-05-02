@@ -7,22 +7,26 @@ It's got some image generation capabilities that I do not use, but I left them t
 
 I have modified and edited the hell out of it for my own personal use.
 
-The original script saved all previous prompts to a file `~/.chatgpt_history`. But I found that after a few weeks of use, that file grew quite large. Mine was
-over 2,000 lines when I made this revision.
+The original script saved all previous prompts to a file `~/.chatgpt_history`. But I found that after a few weeks of use, that file grew quite large. Mine was over 2,000 lines when I made this revision.
 
 It now creates a new daily file at `~/.chatgpt_history` with the format `Y-%m-%d.txt`.
 
 I found this method better as I can now quickly "Live Grep" search with neovim 👍
 
-Example: `~/.chat_history/2023-05-02.txt`.
+Filename example: `~/.chat_history/2023-05-02.txt`.
 
 When prompting the first prompt of the day, this is the output:
+
 ![image1](https://i.imgur.com/2NJRPuq.png)
 
 Afterwards, this is the output:
+
 ![image2](https://i.imgur.com/zS6a3fc.png)
 
-I also have all prompt responses piped out to `xclip -selection clipboard`, so I can quickly and easily paste elsewhere.
+Each prompt is now also saved along with the response. I found this format to be easier to read.
+![image3](https://i.imgur.com/plUgIco.png)
+
+All prompt responses piped out to `xclip -selection clipboard`, so I can quickly and easily paste elsewhere.
 
 ---
 
