@@ -16,7 +16,17 @@ I found this method better as I can now quickly "Live Grep" search with neovim ð
 
 Example: `~/.chat_history/2023-05-02.txt`.
 
+When prompting the first prompt of the day, this is the output:
+![image1](https://i.imgur.com/2NJRPuq.png)
+
+Afterwards, this is the output:
+![image2](https://i.imgur.com/zS6a3fc.png)
+
+I also have all prompt responses piped out to `xclip -selection clipboard`, so I can quickly and easily paste elsewhere.
+
 ---
+
+## Usage:
 
 First get your own API key from https://platform.openai.com/account/api-keys
 
