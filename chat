@@ -261,7 +261,7 @@ CONTEXT=${CONTEXT:-false}
 # 	chmod 600 ~/.chatgpt_history
 # fi
 
-chat_history=~/.chat_history/$(date +%Y-%m-%d).txt
+chat_history=~/.chat_history/$(date +%Y-%m-%d).md
 if [ ! -f "$chat_history" ]; then
 	touch "$chat_history"
 	chmod 600 "$chat_history"
