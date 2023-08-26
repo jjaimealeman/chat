@@ -324,6 +324,7 @@ while $running; do
 			curl -sS $image_url -o temp_image.png
 			kitty +kitten icat temp_image.png
 			rm temp_image.png
+			echo -e "\033[33mImage\033[0m \033[33mon\033[0m \033[33mclipboard\033[0m 👍"
 		else
 			echo "Would you like to open it? (Yes/No)"
 			read -e answer
@@ -388,6 +389,7 @@ while $running; do
 		# echo -e "$timestamp \n$prompt \n$response_data \n" >>~/.chatgpt_history
 		echo -e "================\n$timestamp \n----------------\nPROMPT:\n$prompt \n\nRESPONSE:\n$response_data \n" >>$chat_history
 		echo -e "$response_data" | xclip -selection clipboard
+	echo -e "\033[33mResponse\033[0m \033[33mon\033[0m \033[33mclipboard\033[0m 👍"
 
 	elif [[ "$MODEL" =~ ^gpt- ]]; then
 		# escape quotation marks
@@ -417,6 +419,7 @@ while $running; do
 		# echo -e "$timestamp \n$prompt \n$response_data \n" >>~/.chatgpt_history
 		echo -e "================\n$timestamp \n----------------\nPROMPT:\n$prompt \n\nRESPONSE:\n$response_data \n" >>$chat_history
 		echo -e "$response_data" | xclip -selection clipboard
+	echo -e "\033[33mResponse\033[0m \033[33mon\033[0m \033[33mclipboard\033[0m 👍"
 	else
 		# escape quotation marks
 		escaped_prompt=$(echo "$prompt" | sed 's/"/\\"/g')
@@ -452,5 +455,6 @@ while $running; do
 		# echo -e "$timestamp \n$prompt \n$response_data \n" >>~/.chatgpt_history
 		echo -e "================\n$timestamp \n----------------\nPROMPT:\n$prompt \n\nRESPONSE:\n$response_data \n" >>$chat_history
 		echo -e "$response_data" | xclip -selection clipboard
+	echo -e "\033[33mResponse\033[0m \033[33mon\033[0m \033[33mclipboard\033[0m 👍"
 	fi
 done
