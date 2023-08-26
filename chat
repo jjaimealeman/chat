@@ -333,7 +333,13 @@ while $running; do
 		handle_error "$image_response"
 		image_url=$(echo $image_response | jq -r '.data[0].url')
 		echo -e "$OVERWRITE_PROCESSING_LINE"
-		echo -e "${CHATGPT_CYAN_LABEL}Your image was created. \n\nLink: ${image_url}\n"
+		echo -e "${CHATGPT_CYAN_LABEL}Your image was created. \n\n"
+		echo -e "Link: ${image_url}\n"
+		# image_count=$(-type f \( -iname \"*.png\" \) | wc -l)
+		# IMAGE_COUNT=$(find $chat_history_images -type f \( -iname "*.png" \) | wc -l)
+		# echo -e "Local path is: $chat_history_images/$image_count_$(date +%Y-%m-%d).png\n"
+		# echo "IMAGE_COUNT is: $IMAGE_COUNT"
+		# echo -e "Local path is: $chat_history_images/$IMAGE_COUNT_$(date +%Y-%m-%d).png\n"
 
 		if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
 			curl -sS $image_url -o temp_image.png
