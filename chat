@@ -255,26 +255,18 @@ MODEL=${MODEL:-gpt-3.5-turbo}
 SIZE=${SIZE:-512x512}
 CONTEXT=${CONTEXT:-false}
 
-# create history file
-# if [ ! -f ~/.chatgpt_history ]; then
-# 	touch ~/.chatgpt_history
-# 	chmod 600 ~/.chatgpt_history
-# fi
-
+# Create a directory for chat history
 chat_history=~/.chat_history/$(date +%Y-%m-%d).md
 if [ ! -f "$chat_history" ]; then
 	touch "$chat_history"
 	chmod 600 "$chat_history"
 	echo "Created Chat History: '$chat_history'."
-	# echo " Chat History created:"
 	echo "======================="
 else
 	prompt_count=$(grep -o "PROMPT" $chat_history | wc -l)
 	line_count=$(wc -l <$chat_history)
 	echo "Chat history exists: '$chat_history'."
 	echo "With $prompt_count prompts and $line_count lines."
-
-	# echo " Chat History already exists"
 	echo "============================="
 fi
 
@@ -285,14 +277,9 @@ if [ ! -d "$chat_history_images" ]; then
 	mkdir -p "$chat_history_images"
 	chmod 755 "$chat_history_images"
 	echo "Created Chat History Images Directory: '$chat_history_images'."
-	# echo " Chat History created:"
 	echo "=============================================="
 else
 	echo "Chat history images directory exists: '$chat_history_images'."
-	# Count the number of images in the directory
-	# image_count=$(ls -1q $chat_history_images | wc -l)
-	# find $chat_history_images -type f \( -iname "*.png" \) | wc -l
-	# image_count="-type f \( -iname \"*.png\" \) | wc -l"
 	echo "There are $(find $chat_history_images -type f \( -iname "*.png" \) | wc -l) images."
 	echo "=============================================="
 fi
@@ -335,26 +322,26 @@ while $running; do
 		echo -e "$OVERWRITE_PROCESSING_LINE"
 		echo -e "${CHATGPT_CYAN_LABEL}Your image was created. \n\n"
 		echo -e "Link: ${image_url}\n"
-		# image_count=$(-type f \( -iname \"*.png\" \) | wc -l)
-		# IMAGE_COUNT=$(find $chat_history_images -type f \( -iname "*.png" \) | wc -l)
-		# echo -e "Local path is: $chat_history_images/$image_count_$(date +%Y-%m-%d).png\n"
-		# echo "IMAGE_COUNT is: $IMAGE_COUNT"
-		# echo -e "Local path is: $chat_history_images/$IMAGE_COUNT_$(date +%Y-%m-%d).png\n"
 
 		if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
 			curl -sS $image_url -o temp_image.png
 			imgcat temp_image.png
 			rm temp_image.png
 		elif [[ "$TERM" == "xterm-kitty" ]]; then
+			# Get image and name as temp_image.png
 			curl -sS $image_url -o temp_image.png
+			# Get the number of images in the chat history images directory
 			IMAGE_COUNT=$(find $chat_history_images -type f \( -iname "*.png" \) | wc -l)
-			echo -e "Image count is: $IMAGE_COUNT\n\n"
+			echo -e "Image count is: $IMAGE_COUNT\n"
+			# Move temp_image.png to chat history images directory with date and image count as part of the file name.
+			# EXAMPLE: 2023-08-26_10.png
 			mv temp_image.png $chat_history_images/$(date +%Y-%m-%d)_$(find $chat_history_images -type f \( -iname "*.png" \) | wc -l).png
+			# Echo path to image.
 			echo -e "Local path is: $chat_history_images/$(date +%Y-%m-%d)_$(find $chat_history_images -type f \( -iname "*.png" \) | wc -l).png\n"
+			# Display image in kitty terminal.
 			kitty +kitten icat $chat_history_images/$(date +%Y-%m-%d)_$(find $chat_history_images -type f \( -iname "*.png" \) | wc -l).png
-
+			# Copy image to clipboard using xclip.
 			xclip -selection clipboard -t image/png -i < $chat_history_images/$(date +%Y-%m-%d)_$(find $chat_history_images -type f \( -iname "*.png" \) | wc -l).png
-
 			echo -e "\033[33mImage\033[0m \033[33mon\033[0m \033[33mclipboard\033[0m 👍"
 		else
 			echo "Would you like to open it? (Yes/No)"
