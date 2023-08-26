@@ -278,6 +278,25 @@ else
 	echo "============================="
 fi
 
+# Create a directory for chat history images
+chat_history_images=~/.chat_history/images
+image_count="-type f \( -iname \"*.png\" \) | wc -l"
+if [ ! -d "$chat_history_images" ]; then
+	mkdir -p "$chat_history_images"
+	chmod 755 "$chat_history_images"
+	echo "Created Chat History Images Directory: '$chat_history_images'."
+	# echo " Chat History created:"
+	echo "=============================================="
+else
+	echo "Chat history images directory exists: '$chat_history_images'."
+	# Count the number of images in the directory
+	# image_count=$(ls -1q $chat_history_images | wc -l)
+	# find $chat_history_images -type f \( -iname "*.png" \) | wc -l
+	# image_count="-type f \( -iname \"*.png\" \) | wc -l"
+	echo "There are $(find $chat_history_images -type f \( -iname "*.png" \) | wc -l) images."
+	echo "=============================================="
+fi
+
 running=true
 # check input source and determine run mode
 
