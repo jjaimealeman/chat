@@ -9,11 +9,11 @@ I have modified and edited the hell out of it for my own personal use.
 
 The original script saved all previous prompts to a file `~/.chatgpt_history`. But I found that after a few weeks of use, that file grew quite large. Mine was over 2,000 lines when I made this revision.
 
-It now creates a new daily file at `~/.chatgpt_history` with the format `Y-%m-%d.txt`.
+It now creates a new daily file at `~/.chatgpt_history` with the format `Y-%m-%d.md`.
 
 I found this method better as I can now quickly "Live Grep" search with neovim 👍
 
-Filename example: `~/.chat_history/2023-05-02.txt`.
+Filename example: `~/.chat_history/2023-05-02.md`.
 
 When prompting the first prompt of the day, this is the output:
 
