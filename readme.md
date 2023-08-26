@@ -1,4 +1,5 @@
-## Tue 02 May 2023
+## May 02 2023 _(date started)_
+## Aug 26 2023 _(date modified)_
 
 With the explosion of ChatGPT use, I decided to search around for a shell script that I could call from my terminal.
 After testing out different ones, I settled on this one: https://github.com/0xacx/chatGPT-shell-cli
@@ -28,6 +29,8 @@ Each prompt is now also saved along with the response. I found this format to be
 
 All prompt responses piped out to `xclip -selection clipboard`, so I can quickly and easily paste elsewhere.
 
+Image generation is saved to `~/.chatgpt_history/images` folder with date stamp, and suffixed with an incrementing number count.
+
 ---
 
 ## Usage:
@@ -43,3 +46,11 @@ And add these 2 lines to `.zshrc`.
 Give your script the proper permissions.
 
 `chmod +x chat`
+
+## Requirements:
+```
+curl (for API calls)
+jq (JSON parser)
+xclip (clipboard)
+glow (markdown viewer)
+```
