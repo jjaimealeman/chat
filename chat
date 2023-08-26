@@ -347,8 +347,14 @@ while $running; do
 			rm temp_image.png
 		elif [[ "$TERM" == "xterm-kitty" ]]; then
 			curl -sS $image_url -o temp_image.png
-			kitty +kitten icat temp_image.png
-			rm temp_image.png
+			IMAGE_COUNT=$(find $chat_history_images -type f \( -iname "*.png" \) | wc -l)
+			echo -e "Image count is: $IMAGE_COUNT\n\n"
+			mv temp_image.png $chat_history_images/$(date +%Y-%m-%d)_$(find $chat_history_images -type f \( -iname "*.png" \) | wc -l).png
+			echo -e "Local path is: $chat_history_images/$(date +%Y-%m-%d)_$(find $chat_history_images -type f \( -iname "*.png" \) | wc -l).png\n"
+			kitty +kitten icat $chat_history_images/$(date +%Y-%m-%d)_$(find $chat_history_images -type f \( -iname "*.png" \) | wc -l).png
+
+			xclip -selection clipboard -t image/png -i < $chat_history_images/$(date +%Y-%m-%d)_$(find $chat_history_images -type f \( -iname "*.png" \) | wc -l).png
+
 			echo -e "\033[33mImage\033[0m \033[33mon\033[0m \033[33mclipboard\033[0m 👍"
 		else
 			echo "Would you like to open it? (Yes/No)"
