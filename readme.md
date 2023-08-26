@@ -54,3 +54,12 @@ jq (JSON parser)
 xclip (clipboard)
 glow (markdown viewer)
 ```
+
+## Video:
+
+https://github.com/jjaimealeman/chat/assets/1428292/c2004064-7a09-499a-8d8a-c8d7406f68f8
+
+## DALL-E generated image:
+
+![2023-08-26_10](https://github.com/jjaimealeman/chat/assets/1428292/b441f9c5-885a-478b-91d3-3167356289f2)
+
